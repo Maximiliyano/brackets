@@ -9,10 +9,15 @@ module.exports = function check(str, bracketsConfig)
 
       if (bracketsIndex % 2 === 0) 
       {
-          stack.push(bracketsIndex)
-          if (bracket === brackets[bracketsIndex+1])
+        if (bracket === brackets[bracketsIndex + 1] && stack[stack.length - 1] === bracketsIndex)
             stack.pop();
-      } 
+
+        else if (bracket === brackets[bracketsIndex + 1] && stack[stack.length - 1] !== bracketsIndex)
+            stack.push(bracketsIndex)
+
+        else
+            stack.push(bracketsIndex)
+      }
       else 
       {
           if (stack.pop() !== bracketsIndex-1) 
